@@ -28,28 +28,66 @@ import ReactDOM from "react-dom/client";
 // root.render(parent);
 
 // const heading = React.createElement("h1", { id: "heading" }, "REACT ELEMENT");
-const jsxheading = <h1 id="heading" tabIndex={5}>Namaste React JSX</h1>;
-console.log(jsxheading);
+// const jsxheading = <h1 id="heading" tabIndex={5}>Namaste React JSX</h1>;
+// console.log(jsxheading);
 
-//normal function 
+// //normal function
 
-const TitlChild = function () {
-  return (<h2>normal function </h2>)
-}
-//REACT COMPONENT
+// const TitlChild = function () {
+//   return (<h2>normal function </h2>)
+// }
+// //REACT COMPONENT
 
-const Title = () => (
-  <div><TitlChild /><h1 className="heading">title component</h1> </div>
-);
-const elem = <span>ELEMNT</span>
-const number = "";
-const ntitle = (<div>{elem}normal JS variable </div>)
+// const Title = () => (
+//   <div><TitlChild /><h1 className="heading">title component</h1> </div>
+// );
+// const elem = <span>ELEMNT</span>
+// const number = "";
+// const ntitle = (<div>{elem}normal JS variable </div>)
 
-const HeadingComponent = () =>  (<>
-  {number && <Title />}
-  {ntitle}
-  {/* <Title /> */}
-  <h1>HEading component </h1></>)
+// const HeadingComponent = () =>  (<>
+//   {number && <Title />}
+//   {ntitle}
+//   {/* <Title /> */}
+//   <h1>HEading component </h1></>)
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(<HeadingComponent />);
+
+//REACT-04
+
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img
+          className="logo"
+          src="https://cdn.logojoy.com/wp-content/uploads/2018/05/01105857/1553.png"
+        />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Contact</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      {/* //Header
+      //Body
+      //Footer */}
+    </div>
+  );
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent />);
+root.render(<AppLayout />);
