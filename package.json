@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "UPGRADING IN REACT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build":"parcel bulid index.html"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,6 @@
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
-  }
+  },
+  "browserslist":[">1%"]
 }
