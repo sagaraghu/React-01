@@ -1,0 +1,25 @@
+{
+  "name": "react-01",
+  "version": "1.0.0",
+  "description": "UPGRADING IN REACT",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagaraghu/React-01.git"
+  },
+  "author": "RAGHU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sagaraghu/React-01/issues"
+  },
+  "homepage": "https://github.com/sagaraghu/React-01#readme",
+  "devDependencies": {
+    "parcel": "^2.14.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
