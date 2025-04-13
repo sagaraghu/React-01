@@ -56,6 +56,17 @@ import ReactDOM from "react-dom/client";
 
 //REACT-04
 
+/**
+ * Header
+ *  - logo
+ *  - nav Items
+ * Body
+ *  - Search
+ *  - RestaurantContainer
+ *    -RestaurantCard
+ *    -
+ */
+
 const Header = () => {
   return (
     <div className="header">
@@ -77,10 +88,50 @@ const Header = () => {
   );
 };
 
+const RestaurantCard = (props) => {
+  const { res } = props;
+  const { resName, cuisine, rating, sla } = res;
+  return (
+    <div className="res-card">
+      <img
+        alt="img1"
+        className="res-logo"
+        src="https://media.istockphoto.com/id/1345624336/photo/chicken-biriyani.jpg?s=612x612&w=0&k=20&c=adU_N0P-1SKMQLZu5yu7aPknfLLgbViI8XILqLP92A4="
+      />
+      <h3>{resName}</h3>
+      <h4>{cuisine?.join(", ")}</h4>
+      <h4>{rating} stars</h4>
+      <h4>{sla}minutes</h4>
+    </div>
+  );
+};
+const resList = [
+  {
+    resName: "Meghana Foods",
+    cuisine: ["Biryani", "North Indian", "Asian"],
+    rating: "4.4",
+    sla: 36,
+    id:1
+  },
+  { resName: "KFC", cuisine: ["Burger", "Fast Food"], rating: "4.6", sla: 15, id:2 },
+];
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="Search">Search</div>
+      <div className="res-container">
+        {resList.map(res => (
+          <RestaurantCard res={res} key={res?.id} />
+        ))}
+      </div>
+    </div>
+  );
+};
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
+      <Body />
       {/* //Header
       //Body
       //Footer */}
