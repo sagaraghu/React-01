@@ -111,16 +111,22 @@ const resList = [
     cuisine: ["Biryani", "North Indian", "Asian"],
     rating: "4.4",
     sla: 36,
-    id:1
+    id: 1,
   },
-  { resName: "KFC", cuisine: ["Burger", "Fast Food"], rating: "4.6", sla: 15, id:2 },
+  {
+    resName: "KFC",
+    cuisine: ["Burger", "Fast Food"],
+    rating: "4.6",
+    sla: 15,
+    id: 2,
+  },
 ];
 const Body = () => {
   return (
     <div className="body">
       <div className="Search">Search</div>
       <div className="res-container">
-        {resList.map(res => (
+        {resList.map((res) => (
           <RestaurantCard res={res} key={res?.id} />
         ))}
       </div>
