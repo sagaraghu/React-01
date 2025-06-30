@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
-    "build": "parcel bulid index.html"
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-infinite-scroll-component": "^6.1.0"
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-router-dom": "^7.5.3"
   },
   "browserslist": [
     ">1%"

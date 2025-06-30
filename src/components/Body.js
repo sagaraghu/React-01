@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { resList } from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
+import { Link } from "react-router"
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -47,7 +48,7 @@ const Body = () => {
 
   const fetchMoreData = async () => {
     setLoading(true);
-    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.38430&lng=78.45830&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.38430&lng=78.45830&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&nextOffset=CJhlELQ4KIDYl/Wui4erVTCnEzgC")
     const result = await response.json();
     const newItems = result?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
     setRestaurantList(prev => [...prev, ...newItems]);
@@ -140,6 +141,12 @@ const Body = () => {
   // );
 
   return (
+    // <InfiniteScroll
+    //   dataLength={restaurantList.length}
+    //   next={fetchMoreData}
+    //   hasMore={hasMore}
+    //   loader={<h4>Loading...</h4>}
+    // >
     <div className="body">
        <div className="Search">
          <input
@@ -156,14 +163,18 @@ const Body = () => {
          </div>
        </div>
        <div className="res-container" >
-         {filteredRes?.map((res,index) => 
-           (
-            <RestaurantCard res={res} key={index}/>
+         {filteredRes?.map((res,index) => {
+           const isLastItem = index === filteredRes.length - 1;
+           return (
+            <Link to={"/restaurants/"+ res?.info?.id} key={res?.info?.id} ref={isLastItem ? lastElement : null}> <RestaurantCard res={res} /> </Link>
           )
+         }
+          
          
          )}
        </div>
      </div>
+    //  </InfiniteScroll>
   );
 };
 
