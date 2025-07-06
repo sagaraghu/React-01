@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { MENUAPI_URL, RESMENU_IMG_URL } from '../utils/constant';
 import {useParams} from 'react-router'
+import useRestaurantMenu from '../utils/hooks/useRestaurantMenu';
 
 const RestaurantMenu = () => {
 
-    const [resMenuInfo, setResMeniInfo] = useState(null);
+    // const [resMenuInfo, setResMeniInfo] = useState(null);
 
     const {resId} = useParams();
 
-    useEffect(()=>{
-        fetchMenu();
-    },[]);
+    // useEffect(()=>{
+    //     fetchMenu();
+    // },[]);
 
-    const fetchMenu = async() => {
-        const data = await fetch(MENUAPI_URL+resId);
-        const json = await data.json();
-        setResMeniInfo(json.data)
-    } 
+    // const fetchMenu = async() => {
+    //     const data = await fetch(MENUAPI_URL+resId);
+    //     const json = await data.json();
+    //     setResMeniInfo(json.data)
+    // } 
+
+
+    // will create custo hook as menu card can have only render logic we can move fetch call into a custom hook 
+
+    const resMenuInfo = useRestaurantMenu(resId);
+
 
     if(resMenuInfo === null ) return (<h1>Loading....</h1>);
     

@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { resList } from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
-import { Link } from "react-router"
+import { Link } from "react-router";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -71,6 +73,12 @@ const Body = () => {
     });
     setFilteredRes(res);
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false){
+    return  <>Looks like you are offline !! pllease check your internt </>
+  }
 
   if (filteredRes?.length === 0) {
     return <>Loading......</>;
