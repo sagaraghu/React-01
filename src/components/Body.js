@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { resList } from "../utils/mockData";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
-
+import UserContext from "../utils/hooks/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -18,6 +18,8 @@ const Body = () => {
   const observer = useRef();
   const lastElement = useRef();
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+ const {loggedInUser, setUserName}= useContext(UserContext)
 
   useEffect(() => {
     fetchData();
@@ -38,11 +40,14 @@ const Body = () => {
   const fetchData = async () =>{
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.38430&lng=78.45830&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      // "https://swiggy-api-4c740.web.app/swiggy-api.json"
+      // "https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api"
+      // "https://pastebin.com/raw/0QcdEDBL"
     );
 
     const json = await data.json();
 
-    console.log("josn data",json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    // console.log("josn data",json)
 
     setRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -60,7 +65,7 @@ const Body = () => {
     setLoading(false);
   };
 
-  
+  // console.log("list",filteredRes)
 
   const bestRating = () => {
     const list = restaurantList?.filter((item) => item?.info?.avgRating > 4);
@@ -156,25 +161,44 @@ const Body = () => {
     //   loader={<h4>Loading...</h4>}
     // >
     <div className="body">
-       <div className="Search">
+      <div className="flex items-center">
+       <div className="Search m-4 ">
          <input
+         className="border border-solid border-black"
            type="text"
            alt="search"
            value={searchText}
            onChange={(e) => {
              setSearchText(e.target.value);
            }}
+           data-testid="searchInput"
          />
-         <button onClick={handleFilter}>Search</button>
-         <div className="filter">
-           <button onClick={bestRating}>BestRating</button>
-         </div>
+         <button onClick={handleFilter} className="px-3 py-1 bg-green-300 m-4 rounded-lg cursor-pointer">Search</button>
        </div>
-       <div className="res-container" >
+       <div className="">
+           <button onClick={bestRating} className="px-3 py-1 bg-gray-100 rounded-lg cursor-pointer">BestRating</button>
+         </div>
+         <div className="p-4 m-4 flex items-center">
+         <label>UserName : </label>
+         <input
+         className="border border-solid border-black p-2"
+           type="text"
+           alt="search"
+           value={loggedInUser}
+           onChange={(e) => {
+            setUserName(e.target.value);
+           }}
+         />
+        
+       </div>
+         </div> 
+       <div className="res-container flex flex-wrap" >
          {filteredRes?.map((res,index) => {
            const isLastItem = index === filteredRes.length - 1;
            return (
-            <Link to={"/restaurants/"+ res?.info?.id} key={res?.info?.id} ref={isLastItem ? lastElement : null}> <RestaurantCard res={res} /> </Link>
+            <Link to={"/restaurants/"+ res?.info?.id} key={res?.info?.id} ref={isLastItem ? lastElement : null}> 
+            {res?.info?.avgRating > 4.2 ? (<RestaurantCardPromoted res={res}/>): (<RestaurantCard res={res} />) }
+            </Link>
           )
          }
           

@@ -1,4 +1,4 @@
-#heading,
+/* #heading,
 #heading2 {
     color: green;
     padding: 10px;
@@ -43,7 +43,7 @@
 .res-container {
     display: flex;
     flex-wrap: wrap;
-    /* margin: 5px; */
+     //margin: 5px; 
 }
 
 .res-card {
@@ -74,4 +74,6 @@
 .user-card {
     padding: 10px;
     border: 1px solid black;
-}
+} */
+
+@import "tailwindcss";

@@ -2,12 +2,12 @@ import {useState,useEffect} from "react";
 import {useParams} from 'react-router';
 import { MENUAPI_URL } from '../constant';
 
-const useRestaurantMenu = ({resId}) => {
-    
+const useRestaurantMenu = () => {
+
     const [resMenuInfo, setResMeniInfo] = useState(null);
 
-
-
+    const {resId} = useParams();
+    // console.log("resId",resId)
     useEffect(()=>{
         fetchMenu();
     },[]);

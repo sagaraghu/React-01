@@ -78,3 +78,28 @@ Named Export/Import
 
 export const Component ;
 import {Component} from "path
+
+
+/** 
+# REDUX TOOLKIT
+- Install @reduxjs/toolkit and react-redux 
+- build our store
+- connect our store to our APP
+- will create cart slice
+- dispatch action - when click on add button 
+- then will read the DATA using Selector 
+*/
+
+
+# Setting up testing in our app
+- install react testing library 
+-installed jest 
+- installed babel dependencies
+- configure babel
+- configure parcel config file to disable default babel transpilation 
+- jest configuration  - npm init jest@latest
+- jest 28 and greater we need to install jest-environment-jsdom
+-install @babel/preset-react - to make JSX work in test cases 
+
+- now we need to include @babel/preset-react inside our bael config file 
+- install testing-library/jest-dom as error comes due to toBeInTheDocument

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "UPGRADING IN REACT",
   "scripts": {
+    "watch":"jest --watch",
     "test": "jest",
     "start": "parcel index.html",
     "build": "parcel build index.html"
@@ -18,13 +19,26 @@
   },
   "homepage": "https://github.com/sagaraghu/React-01#readme",
   "devDependencies": {
-    "parcel": "^2.14.4"
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "babel-jest": "^30.0.4",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "parcel": "^2.14.4",
+    "util": "^0.12.5"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/postcss": "^4.1.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-infinite-scroll-component": "^6.1.0",
-    "react-router-dom": "^7.5.3"
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.5.3",
+    "tailwindcss": "^4.1.11"
   },
   "browserslist": [
     ">1%"
