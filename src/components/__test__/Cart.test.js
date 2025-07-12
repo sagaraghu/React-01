@@ -10,7 +10,7 @@ import "@testing-library/jest-dom"
 import Cart from "../Cart";
 
 global.fetch = jest.fn(()=>{return Promise.resolve({
-    json:()=> Promise.resolve(DATA);
+    json:()=> Promise.resolve(DATA)
 })});
 
 it("should load rest men component", async () => {
